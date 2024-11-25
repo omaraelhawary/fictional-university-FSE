@@ -5,11 +5,11 @@ require get_theme_file_path('/inc/like-route.php'); //Call like custom API route
 
 function pageBannersection($args = NULL){
 
-    if(!isset($args['title'])){
+    if (!isset($args['title'])) {
        $args['title'] = get_the_title();
     }
 
-    if(!isset($args['subtitle'])){
+    if (!isset($args['subtitle'])) {
         $args['subtitle'] = get_field('page_banner_subtitle');
     }
 
@@ -61,6 +61,8 @@ function university_features(){
     add_image_size( 'professorProtriat', 480, 650, true );
     add_image_size( 'pageBanner', 1500, 350, true );
     add_image_size('slideshowImage', 1900, 525, true);
+    add_theme_support('editor_styles');
+    add_editor_style(array('build/style-index.css', 'build/index.css', 'https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i'));
 }
 
 add_action('after_setup_theme', 'university_features');
@@ -229,6 +231,15 @@ function privateNote($data, $postarr){
 }
 
 add_filter('wp_insert_post_data', 'privateNote', 10, 2);
+
+/**
+ * Registers the "Banner" block, which is a custom block that displays a banner with text and a background image.
+ *
+ * The block is registered with the "ourblocktheme/banner" name, and the JavaScript file for the block is loaded on the
+ * editor page. The block is only available to logged in users.
+ *
+ * @return void
+ */
 
 function bannerBlock(){
     wp_register_script('bannerBlockScript', get_stylesheet_directory_uri().'/build/banner.js', array('wp-blocks', 'wp-editor'));
