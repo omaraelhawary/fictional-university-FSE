@@ -232,20 +232,20 @@ function privateNote($data, $postarr){
 
 add_filter('wp_insert_post_data', 'privateNote', 10, 2);
 
-/**
- * Registers the "Banner" block, which is a custom block that displays a banner with text and a background image.
- *
- * The block is registered with the "ourblocktheme/banner" name, and the JavaScript file for the block is loaded on the
- * editor page. The block is only available to logged in users.
- *
- * @return void
- */
+class JSXBlock {
+    public $name;
 
-function bannerBlock(){
-    wp_register_script('bannerBlockScript', get_stylesheet_directory_uri().'/build/banner.js', array('wp-blocks', 'wp-editor'));
-    register_block_type( "ourblocktheme/banner", array(
-        'editor_script' => 'bannerBlockScript'
-    ) );
+    function __construct($name){
+        $this->name = $name;
+        add_action('init', [$this, 'onInit']);
+    }
+
+    function onInit(){
+        wp_register_script($this->name, get_stylesheet_directory_uri()."/build/{$this->name}.js", array('wp-blocks', 'wp-editor'));
+        register_block_type( "ourblocktheme/{$this->name}", array(
+        'editor_script' => $this->name));
+    }
 }
 
-add_action('init', 'bannerBlock');
+new JSXBlock('banner');
+new JSXBlock('genericheading');

@@ -21,7 +21,7 @@ function EditComponent() {
     return (
         <div className="page-banner">
             <div className="page-banner__bg-image"
-                style={{ backgroundImage: "url('/wp-content/theme/fictional-university-fse/images/library-hero.jpg');" }}></div>
+                style={{ backgroundImage: "url('/wp-content/themes/fictional-university-fse/images/library-hero.jpg');" }}></div>
             <div className="page-banner__content container t-center c-white">
                 <InnerBlocks allowedBlocks={["core/paragraph", "core/heading", "core/list", "core/button"]} />
             </div>
@@ -33,7 +33,7 @@ function SaveComponent() {
     return (
         <div className="page-banner">
             <div className="page-banner__bg-image"
-                style={{ backgroundImage: "url('/wp-content/theme/fictional-university-fse/images/library-hero.jpg');" }}></div>
+                style={{ backgroundImage: "url('/wp-content/themes/fictional-university-FSE/images/library-hero.jpg');" }}></div>
             <div className="page-banner__content container t-center c-white">
                 <InnerBlocks.Content />
             </div>

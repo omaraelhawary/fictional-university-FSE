@@ -132,7 +132,7 @@ function EditComponent() {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "page-banner__bg-image",
       style: {
-        backgroundImage: "url('/wp-content/theme/fictional-university-fse/images/library-hero.jpg');"
+        backgroundImage: "url('/wp-content/themes/fictional-university-fse/images/library-hero.jpg');"
       }
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "page-banner__content container t-center c-white",
@@ -148,7 +148,7 @@ function SaveComponent() {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "page-banner__bg-image",
       style: {
-        backgroundImage: "url('/wp-content/theme/fictional-university-fse/images/library-hero.jpg');"
+        backgroundImage: "url('/wp-content/themes/fictional-university-FSE/images/library-hero.jpg');"
       }
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "page-banner__content container t-center c-white",
