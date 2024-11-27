@@ -252,7 +252,9 @@ class MobileMenu {
     this.events();
   }
   events() {
-    this.openButton.addEventListener("click", () => this.openMenu());
+    if (this.openButton) {
+      this.openButton.addEventListener("click", () => this.openMenu());
+    }
   }
   openMenu() {
     this.openButton.classList.toggle("fa-bars");
