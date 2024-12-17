@@ -202,7 +202,8 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     colorName: {
-      type: "string"
+      type: "string",
+      default: "blue"
     }
   },
   edit: EditComponent,
@@ -233,9 +234,16 @@ function EditComponent(props) {
     name: "dark-orange",
     color: "#f95738"
   }];
+  const currentColorValue = ourColors.filter(color => {
+    return color.name === props.attributes.colorName;
+  })[0].color;
   function handleColorChange(colorCode) {
+    //from the hex value that the color palette gives us, we need to convert it to a name
+    const {
+      name
+    } = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.getColorObjectByColorValue)(ourColors, colorCode);
     props.setAttributes({
-      colorName: colorCode
+      colorName: name
     });
   }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
@@ -273,7 +281,7 @@ function EditComponent(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelRow, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ColorPalette, {
             colors: ourColors,
-            value: props.attributes.colorName,
+            value: currentColorValue,
             onChange: handleColorChange
           })
         })

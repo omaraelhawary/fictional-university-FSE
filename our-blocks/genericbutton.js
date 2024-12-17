@@ -1,6 +1,6 @@
 import { link } from "@wordpress/icons"
 import { ToolbarGroup, ToolbarButton, Popover, Button, PanelBody, PanelRow, ColorPalette } from "@wordpress/components"
-import { RichText, InspectorControls, BlockControls, __experimentalLinkControl as LinkControl } from "@wordpress/block-editor"
+import { RichText, InspectorControls, BlockControls, __experimentalLinkControl as LinkControl, getColorObjectByColorValue } from "@wordpress/block-editor"
 import { registerBlockType } from "@wordpress/blocks"
 import { useState } from "@wordpress/element"
 
@@ -23,6 +23,7 @@ registerBlockType("ourblocktheme/genericbutton", {
         },
         colorName: {
             type: "string",
+            default: "blue"
         }
     },
     edit: EditComponent,
@@ -51,8 +52,14 @@ function EditComponent(props) {
         { name: "dark-orange", color: "#f95738" },
     ]
 
+    const currentColorValue = ourColors.filter(color => {
+        return color.name === props.attributes.colorName
+    })[0].color
+
     function handleColorChange(colorCode) {
-        props.setAttributes({ colorName: colorCode })
+        //from the hex value that the color palette gives us, we need to convert it to a name
+        const { name } = getColorObjectByColorValue(ourColors, colorCode)
+        props.setAttributes({ colorName: name })
     }
 
 
@@ -72,7 +79,7 @@ function EditComponent(props) {
             <InspectorControls>
                 <PanelBody title="Colors" initialOpen={true}>
                     <PanelRow>
-                        <ColorPalette colors={ourColors} value={props.attributes.colorName} onChange={handleColorChange} />
+                        <ColorPalette colors={ourColors} value={currentColorValue} onChange={handleColorChange} />
                     </PanelRow>
                 </PanelBody>
             </InspectorControls>
