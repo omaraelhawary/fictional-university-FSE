@@ -1,3 +1,4 @@
+import ourColors from "../inc/ourcolors"
 import { link } from "@wordpress/icons"
 import { ToolbarGroup, ToolbarButton, Popover, Button, PanelBody, PanelRow, ColorPalette } from "@wordpress/components"
 import { RichText, InspectorControls, BlockControls, __experimentalLinkControl as LinkControl, getColorObjectByColorValue } from "@wordpress/block-editor"
@@ -45,12 +46,6 @@ function EditComponent(props) {
     function handleLinkChange(newLink) {
         props.setAttributes({ linkObj: newLink })
     }
-
-    const ourColors = [
-        { name: "blue", color: "#0d3b66" },
-        { name: "orange", color: "#ee964b" },
-        { name: "dark-orange", color: "#f95738" },
-    ]
 
     const currentColorValue = ourColors.filter(color => {
         return color.name === props.attributes.colorName
