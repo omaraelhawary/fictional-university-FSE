@@ -16,7 +16,10 @@ registerBlockType("ourblocktheme/genericbutton", {
             default: "large"
         },
         linkObj: {
-            type: "object"
+            type: "object",
+            default: {
+                url: "#",
+            }
         },
         color: {
             type: "string",
@@ -69,5 +72,5 @@ function EditComponent(props) {
 
 function SaveComponent(props) {
 
-    return <a href={props.attributes.linkObj.url} className={`btn btn--${props.attributes.size} btn--${props.attributes.color}`}>{props.attributes.text}</a>
+    return <a href={props.attributes.linkObj?.url} className={`btn btn--${props.attributes.size} btn--${props.attributes.color}`}>{props.attributes.text}</a>
 }

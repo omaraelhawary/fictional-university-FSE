@@ -196,7 +196,10 @@ __webpack_require__.r(__webpack_exports__);
       default: "large"
     },
     linkObj: {
-      type: "object"
+      type: "object",
+      default: {
+        url: "#"
+      }
     },
     color: {
       type: "string",
@@ -275,7 +278,7 @@ function EditComponent(props) {
 }
 function SaveComponent(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
-    href: props.attributes.linkObj.url,
+    href: props.attributes.linkObj?.url,
     className: `btn btn--${props.attributes.size} btn--${props.attributes.color}`,
     children: props.attributes.text
   });
