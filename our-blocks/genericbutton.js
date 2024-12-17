@@ -79,7 +79,7 @@ function EditComponent(props) {
             <InspectorControls>
                 <PanelBody title="Colors" initialOpen={true}>
                     <PanelRow>
-                        <ColorPalette colors={ourColors} value={currentColorValue} onChange={handleColorChange} />
+                        <ColorPalette disableCustomColors={true} clearable={false} colors={ourColors} value={currentColorValue} onChange={handleColorChange} />
                     </PanelRow>
                 </PanelBody>
             </InspectorControls>
