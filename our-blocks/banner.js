@@ -1,5 +1,8 @@
-import { InnerBlocks } from "@wordpress/block-editor"
-import { registerBlockType } from "@wordpress/blocks";
+import apiFetch from "@wordpress/api-fetch"
+import { Button, PanelBody, PanelRow } from "@wordpress/components"
+import { InnerBlocks, InspectorControls, MediaUpload, MediaUploadCheck } from "@wordpress/block-editor"
+import { registerBlockType } from "@wordpress/blocks"
+import { useEffect } from "@wordpress/element"
 
 registerBlockType("ourblocktheme/banner", {
     title: "Banner",
@@ -10,31 +13,60 @@ registerBlockType("ourblocktheme/banner", {
         align: {
             type: "string",
             default: "full"
+        },
+        imageID: {
+            type: "number"
+        },
+        imageURL: {
+            type: "string"
         }
     },
     edit: EditComponent,
     save: SaveComponent
 })
 
-function EditComponent() {
-    const userMeLater = (
-        <>
-            <h1 className="headline headline--large">Welcome!</h1>
-            <h2 className="headline headline--medium">We think you&rsquo;ll like it here.</h2>
-            <h3 className="headline headline--small">Why don&rsquo;t you check out the <strong>major</strong> you&rsquo;re
-                interested in?</h3>
-            <a href="#" className="btn btn--large btn--blue">Find Your
-                Major</a>
-        </>
-    )
+function EditComponent(props) {
+    useEffect(() => {
+        async function go() {
+            const response = await apiFetch({
+                path: `/wp/v2/media/${props.attributes.imageID}`,
+                method: 'GET'
+            })
+            props.setAttributes({ imageURL: response.media_details.sizes.pageBanner.source_url })
+        }
+        go()
+    }, [props.attributes.imageID])
+
+    function onFileSelect(x) {
+        props.setAttributes({ imageID: x.id })
+    }
 
     return (
-        <div className="page-banner">
-            <div className="page-banner__bg-image" style={{ backgroundImage: "url('/images/library-hero.jpg')" }}></div>
-            <div className="page-banner__content container t-center c-white">
-                <InnerBlocks allowedBlocks={["ourblocktheme/genericheading", "ourblocktheme/genericbutton"]} />
+
+        <>
+            <InspectorControls>
+                <PanelBody title="Background" initialOpen={true}>
+                    <PanelRow>
+                        <MediaUploadCheck>
+                            <MediaUpload
+                                onSelect={onFileSelect}
+                                value={props.attributes.imageID}
+                                render={({ open }) => {
+                                    return <Button onClick={open}>Upload Image</Button>
+                                }}
+                            />
+                        </MediaUploadCheck>
+                    </PanelRow>
+                </PanelBody>
+            </InspectorControls>
+            <div className="page-banner">
+                <div className="page-banner__bg-image" style={{ backgroundImage: `url('${props.attributes.imageURL}')` }}></div>
+                <div className="page-banner__content container t-center c-white">
+                    <InnerBlocks allowedBlocks={["ourblocktheme/genericheading", "ourblocktheme/genericbutton"]} />
+                </div>
             </div>
-        </div>
+        </>
+
     )
 }
 
