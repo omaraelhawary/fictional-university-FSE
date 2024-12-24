@@ -81,7 +81,7 @@ function EditComponent(props) {
 
             <RichText allowedFormats={[]} tagName="a" className={`btn btn--${props.attributes.size} btn--${props.attributes.colorName}`} value={props.attributes.text} onChange={handleTextChange} />
             {isLinkPickerVisiable && (
-                <Popover position="middle center">
+                <Popover position="middle center" onFocusOutside={() => setIsLinkPickerVisible(false)}>
                     <LinkControl settings={[]} value={props.attributes.linkObj} onChange={handleLinkChange} />
                     <Button variant="primary" onClick={() => setIsLinkPickerVisiable(false)} style={{ display: "block", width: "100%" }}>Assign Link</Button>
                 </Popover >
