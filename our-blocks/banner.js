@@ -17,7 +17,7 @@ registerBlockType("ourblocktheme/banner", {
             default: "full"
         },
         imageID: {
-            type: "number"
+            type: "number",
         },
         imageURL: {
             type: "string",
@@ -31,11 +31,17 @@ registerBlockType("ourblocktheme/banner", {
 function EditComponent(props) {
     useEffect(() => {
         async function go() {
-            const response = await apiFetch({
-                path: `/wp/v2/media/${props.attributes.imageID}`,
-                method: 'GET'
-            })
-            props.setAttributes({ imageURL: response.media_details.sizes.pageBanner.source_url })
+            if (props.attributes.imageID) {
+                try {
+                    const response = await apiFetch({
+                        path: `/wp/v2/media/${props.attributes.imageID}`,
+                        method: 'GET'
+                    });
+                    props.setAttributes({ imageURL: response.media_details.sizes.pageBanner.source_url });
+                } catch (error) {
+                    console.error("Failed to fetch media details:", error);
+                }
+            }
         }
         go()
     }, [props.attributes.imageID])
