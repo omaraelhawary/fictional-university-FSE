@@ -3,6 +3,8 @@ import { Button, PanelBody, PanelRow } from "@wordpress/components"
 import { InnerBlocks, InspectorControls, MediaUpload, MediaUploadCheck } from "@wordpress/block-editor"
 import { registerBlockType } from "@wordpress/blocks"
 import { useEffect } from "@wordpress/element"
+import backgroundImage from "/images/library-hero.jpg"
+
 
 registerBlockType("ourblocktheme/banner", {
     title: "Banner",
@@ -18,7 +20,8 @@ registerBlockType("ourblocktheme/banner", {
             type: "number"
         },
         imageURL: {
-            type: "string"
+            type: "string",
+            default: backgroundImage
         }
     },
     edit: EditComponent,
