@@ -265,6 +265,9 @@ class JSXBlock {
 new JSXBlock('banner', true);
 new JSXBlock('genericheading');
 new JSXBlock('genericbutton');
+new JSXBlock('slideshow', true);
+new JSXBlock('slide', true);
+
 
 class PlaceholderBlock {
     public $name;
