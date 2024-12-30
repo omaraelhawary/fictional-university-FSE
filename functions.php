@@ -298,3 +298,4 @@ new PlaceholderBlock('header');
 new PlaceholderBlock('footer');
 new PlaceholderBlock('singlepost');
 new PlaceholderBlock('page');
+new PlaceholderBlock('blogindex');
