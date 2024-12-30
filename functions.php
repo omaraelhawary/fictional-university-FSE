@@ -296,3 +296,4 @@ class PlaceholderBlock {
 new PlaceholderBlock('eventsandblogs');
 new PlaceholderBlock('header');
 new PlaceholderBlock('footer');
+new PlaceholderBlock('singlepost');
