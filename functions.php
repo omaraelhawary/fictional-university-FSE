@@ -300,3 +300,4 @@ new PlaceholderBlock('singlepost');
 new PlaceholderBlock('page');
 new PlaceholderBlock('blogindex');
 new PlaceholderBlock('programs');
+new PlaceholderBlock('singleprogram');
