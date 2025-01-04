@@ -8,12 +8,14 @@
 function universityLikeRoutes(){
     register_rest_route( 'university/v1', 'manageLike', array(
         'methods' => 'POST',
-        'callback' => 'createLike'
+        'callback' => 'createLike',
+        'permission_callback' => '__return_true'
     ));
 
     register_rest_route( 'university/v1', 'manageLike', array(
         'methods' => 'DELETE',
-        'callback' => 'deleteLike'
+        'callback' => 'deleteLike',
+        'permission_callback' => '__return_true'
     ));
 }
 

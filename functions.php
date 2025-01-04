@@ -234,7 +234,7 @@ add_filter('wp_insert_post_data', 'privateNote', 10, 2);
 
 class JSXBlock {
     public $name;
-
+    public $renderCallback;
     function __construct($name, $renderCallback = null){
         $this->name = $name;
         $this -> renderCallback = $renderCallback;

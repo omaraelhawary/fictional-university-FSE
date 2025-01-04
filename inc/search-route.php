@@ -3,7 +3,8 @@
 function unvierstyRegisterSeach(){
     register_rest_route( 'university/v1', 'search', array(
         'methods' => WP_REST_Server::READABLE,
-        'callback' => 'universitySearchResults'
+        'callback' => 'universitySearchResults',
+        'permission_callback' => '__return_true' 
     ) );
 }
 
