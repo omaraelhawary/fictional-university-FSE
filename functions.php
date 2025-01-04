@@ -303,3 +303,18 @@ new PlaceholderBlock('programs');
 new PlaceholderBlock('singleprogram');
 new PlaceholderBlock('singleprofessor');
 new PlaceholderBlock('mynotes');
+
+function myallowedblocks ($allowed_blocks_types, $editor_context) {
+
+    if($editor_context -> post -> post_type == 'professor'){
+        return array('ourblocktheme/header', 'ourblocktheme/singleprofessor', 'ourblocktheme/footer');
+    }
+
+    if (!empty($editor_context -> post)){
+        return $allowed_blocks_types;
+    } 
+    
+    return array('ourblocktheme/header', 'ourblocktheme/footer');
+}
+
+add_filter('allowed_block_types_all', 'myallowedblocks', 10, 2);
