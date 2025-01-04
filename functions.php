@@ -302,3 +302,4 @@ new PlaceholderBlock('blogindex');
 new PlaceholderBlock('programs');
 new PlaceholderBlock('singleprogram');
 new PlaceholderBlock('singleprofessor');
+new PlaceholderBlock('mynotes');
